@@ -1,5 +1,14 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<div class="container">
+    <h1>READING ROOM AT THE BRITISH MUSEUM</h1>
+    <div class="row">
+      {{#if (eq this.session.isAuthenticated true)}}
+      {{log this}}
+        <a class='btn btn-primary col-1' {{on "click" (fn this.invalidateSession this.session)}}>Logout</a>
+      {{else}}
+        {{#link-to 'login' class='btn btn-primary col-1'}}Login{{/link-to}}
+      {{/if}}
+    </div>
+    <div class="row">
+      {{outlet}}
+    </div>
+</div>

@@ -1,0 +1,12 @@
+
+<form>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <Input class="form-control" @id="name" @value={{this.name}} @change={{action "onChangeInput"}} />
+  </div>
+  <div class="mb-3">
+    <label for="description"  class="form-label">Description</label>
+   <Input class="form-control" @id="description" @value={{this.description}} @change={{action "onChangeInput"}} />
+  </div>
+  <button type="submit" {{action "onSubmitForm" preventDefault=true }} class="btn btn-primary">Submit</button>
+</form>

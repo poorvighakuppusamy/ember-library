@@ -1,0 +1,21 @@
+<form>
+  <div class="input-group mb-3">
+  <label class="input-group-text" for="newType">Select User</label>
+  <select name="newType" onchange={{action "updateUserDetails" value="target.value" }}>
+            <option value="" selected  hidden >Select </option>
+            {{#each this.user_options as |use|}}
+                <option value="{{use.key}}" >{{use.value}}</option>
+            {{/each}}
+ </select>
+ </div>
+ <div class="input-group mb-3">
+  <label class="input-group-text" for="newType">Select Book</label>
+  <select name="newType" onchange={{action "updateBookDetails" value="target.value" }}>
+            <option value="" selected  hidden >Select </option>
+            {{#each this.book_options as |book|}}
+                <option value="{{book.key}}" >{{book.value}}</option>
+            {{/each}}
+ </select>
+ </div>
+  <button type="submit" {{action "onSubmitForm" preventDefault=true }} class="btn btn-primary">Submit</button>
+</form>

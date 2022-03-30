@@ -1,0 +1,22 @@
+<form>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <Input class="form-control" @id="title" @value={{this.title}} @change={{action "onChangeInput"}} />
+  </div>
+  <div class="mb-3">
+    <label for="description"  class="form-label">Description</label>
+   <Input class="form-control" @id="description" @value={{this.description}} @change={{action "onChangeInput"}} />
+  </div>
+  <div class="input-group mb-3">
+  <label class="input-group-text" for="newType">Select Author</label>
+  <select name="newType" onchange={{action "updateAuthDetails" value="target.value" }}>
+            <option value="" selected  hidden >Select </option>
+            {{#each this.author_options as |aut|}}
+                <option value="{{aut.key}}" >{{aut.value}}</option>
+            {{/each}}
+ </select>
+</div>
+  <button type="submit" {{action "onSubmitForm" preventDefault=true }} class="btn btn-primary">Submit</button>
+</form>
+
+

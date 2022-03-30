@@ -1,10 +1,22 @@
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-export default class Router extends EmberRouter {
-  location = config.locationType;
-  rootURL = config.rootURL;
-}
+const Router = EmberRouter.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
+});
 
 Router.map(function() {
+  this.route('books');
+  this.route('add-book');
+  this.route('authors');
+  this.route('add-author');
+  this.route('users');
+  this.route('add-user');
+  this.route('borrower-details');
+  this.route('borrow-book');
+  this.route('home');
+  this.route('login');
 });
+
+export default Router;

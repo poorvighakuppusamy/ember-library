@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Book</th>
+      <th scope="col">Borrowed User</th>
+      <th scope="col">Status</th>
+      <th scope="col">Borrowed Date</th>
+      <th scope="col">Return Date</th>
+    </tr>
+  </thead>
+  {{#each this.borrowers as |borrower|}}
+  <tbody>
+    <tr>
+      <td>{{borrower.id}}</td>
+      <td>{{borrower.book.title}}</td>
+      <td>{{borrower.user.name}}</td>
+      <td>{{borrower.status}}</td>
+      <td>{{borrower.formatedBorrowedDate}}</td>
+      <td>{{borrower.formatedReturnDate}}</td>
+      {{#if (eq borrower.status "Pending")}}
+        <td><button type="submit" {{action "onReturnBook" borrower.id }} class="btn btn-primary">Return Book</button></td>
+      {{/if}}
+    </tr>
+  </tbody>
+  {{/each}}
+</table>
+
+<br>
+<div>
+{{#link-to "borrow-book" class="button"}}
+    Borrow Book
+  {{/link-to}}
+</div>
+

@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">About Author</th>
+    </tr>
+  </thead>
+  {{#each this.authors as |author|}}
+  <tbody>
+    <tr>
+      <td>{{author.name}}</td>
+      <td>{{author.description}}</td>
+      {{#each author.books as |book|}} 
+        <tbody>
+          <tr>
+            <td> {{book.title}} </td>
+          </tr>
+          </tbody>
+        {{/each}}
+    </tr>
+  </tbody>
+  {{/each}}
+</table>
+
+<br>
+<div>
+{{#link-to "add-author" class="button"}}
+    Add Author
+  {{/link-to}}
+</div>
