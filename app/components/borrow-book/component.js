@@ -41,7 +41,7 @@ export default Component.extend({
       let borrower = this.get('store').createRecord('borrower-detail', {
               status: this.get('status'),
               user_id: this.get('selectedUserId'),
-              book_id: this.get('selectedBookId'),
+              book_id: this.get('selectedBookId')
       });
       borrower.save().then(re=>{
         alert("Details Updated")

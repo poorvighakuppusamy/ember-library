@@ -1,4 +1,15 @@
-<table class="table">
+<div class="row">
+<div class="col">
+{{home}}
+</div>
+<div class="col">
+{{#link-to "add-user" class="btn btn-primary btn-lg"}}
+    Add User
+  {{/link-to}}
+</div>
+</div>
+<br>
+<table class="table align-middle" class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -16,10 +27,3 @@
   </tbody>
   {{/each}}
 </table>
-
-<br>
-<div>
-{{#link-to "add-user" class="button"}}
-    Add User
-  {{/link-to}}
-</div>

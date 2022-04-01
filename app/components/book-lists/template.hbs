@@ -1,4 +1,16 @@
-<table class="table">
+<div class="row">
+<div class="col">
+{{home}}
+</div>
+<div class="col">
+{{#link-to "add-book" class="btn btn-primary btn-lg"}}
+    Add Book
+  {{/link-to}}
+</div>
+</div>
+<br>
+
+<table class="table align-middle" class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Title</th>
@@ -12,14 +24,38 @@
       <td>{{book.title}}</td>
       <td>{{book.description}}</td>
       <td>{{book.author.name}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_{{book.id}}">
+              Edit Book
+        </button>
+        <div class="modal fade" id="exampleModal_{{book.id}}" tabindex="-1" aria-labelledby="exampleModalLabel_{{book.id}}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel_{{book.id}}">Edit Book</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form>
+            <div class="mb-3">
+               <label for="title_{{book.id}}" class="form-label">Title</label>
+               <Input class="form-control" @name="title" @id="title_{{book.id}}" @value={{book.title}} @change={{action "onChangeInput"}}/>
+            </div>
+            <div class="mb-3">
+               <label for="description_{{book.id}}" class="form-label">Description</label>
+               <Input class="form-control" @name="description" @id="description_{{book.id}}" @value={{book.description}} @change={{action "onChangeInput"}}/>
+            </div>
+            <button type="submit" class="btn btn-primary" {{action "onSubmitForm" book.id preventDefault=true }}>Save changes</button>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" {{action "onCloseForm" preventDefault=true }} data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </td>
     </tr>
   </tbody>
   {{/each}}
 </table>
-
-<br>
-<div>
-{{#link-to "add-book" class="button"}}
-    Add Book
-  {{/link-to}}
-</div>

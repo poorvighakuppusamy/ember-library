@@ -1,4 +1,16 @@
-<table class="table">
+<div class="row">
+<div class="col">
+{{home}}
+</div>
+<div class="col">
+{{#link-to "borrow-book" class="btn btn-primary btn-lg"}}
+    Borrow Book
+  {{/link-to}}
+</div>
+</div>
+<br>
+<div class="table-responsive">
+<table class="table align-middle" class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -13,8 +25,44 @@
   <tbody>
     <tr>
       <td>{{borrower.id}}</td>
-      <td>{{borrower.book.title}}</td>
-      <td>{{borrower.user.name}}</td>
+      <td><div class="accordion" id="accordionExample_{{borrower_id}}">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading_{{borrower.id}}">
+              <div class="text-center">
+                <button type="button" class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne_{{borrower.id}}" aria-expanded="false" aria-controls="collapseOne_{{borrower.id}}">
+                  {{borrower.book.title}}
+                </button>
+              </div>
+              </h2>
+              <div id="collapseOne_{{borrower.id}}" class="accordion-collapse collapse" aria-labelledby="heading_{{borrower.id}}">
+                <div class="accordion-body">
+                 Author Name: {{borrower.book.author.name}}
+                 <br>
+                 About Author: {{borrower.book.author.description}}
+                </div>
+              </div>
+            </div>
+      </div></td>
+      <td><div class="accordion" id="accordionExample_{{borrower.user.id}}">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading_{{borrower.user.id}}">
+              <div class="text-center">
+                <button type="button" class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne_{{borrower.user.id}}" aria-expanded="false" aria-controls="collapseOne_{{borrower.id}}">
+                  {{borrower.user.name}}
+                </button>
+              </div>
+              </h2>
+              <div id="collapseOne_{{borrower.user.id}}" class="accordion-collapse collapse" aria-labelledby="heading_{{borrower.user.id}}">
+                <div class="accordion-body">
+                 User Details:
+                 <br>
+                 Email: {{borrower.user.email}}
+                 <br>
+                 Phone: {{borrower.user.phone}}
+                </div>
+              </div>
+            </div>
+      </div></td>
       <td>{{borrower.status}}</td>
       <td>{{borrower.formatedBorrowedDate}}</td>
       <td>{{borrower.formatedReturnDate}}</td>
@@ -25,11 +73,9 @@
   </tbody>
   {{/each}}
 </table>
-
-<br>
-<div>
-{{#link-to "borrow-book" class="button"}}
-    Borrow Book
-  {{/link-to}}
 </div>
+
+
+
+
 

@@ -18,11 +18,11 @@ export default class LoginController extends Controller {
       // this.errorMessage = error.error || error;
       this.set('identification', null)
       this.set('password', null)
-      this.errorMessage = 'Auth failed'
+      this.errorMessage = ''
+      alert('Authentication Failed')
     }
 
     if (this.session.isAuthenticated) {
-      alert('success')
       this.router.transitionTo('home')
       console.log(this.session.isAuthenticated)
     }

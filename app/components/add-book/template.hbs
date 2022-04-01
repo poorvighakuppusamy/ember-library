@@ -7,9 +7,10 @@
     <label for="description"  class="form-label">Description</label>
    <Input class="form-control" @id="description" @value={{this.description}} @change={{action "onChangeInput"}} />
   </div>
-  <div class="input-group mb-3">
-  <label class="input-group-text" for="newType">Select Author</label>
-  <select name="newType" onchange={{action "updateAuthDetails" value="target.value" }}>
+  <div class="mb-3">
+  <label class="input-group-text" class="form-label" for="newType">Select Author</label>
+  <br>
+  <select name="newType" class="form-select" onchange={{action "updateAuthDetails" value="target.value" }}>
             <option value="" selected  hidden >Select </option>
             {{#each this.author_options as |aut|}}
                 <option value="{{aut.key}}" >{{aut.value}}</option>

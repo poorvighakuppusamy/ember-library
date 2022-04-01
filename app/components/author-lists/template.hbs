@@ -1,4 +1,16 @@
-<table class="table">
+<div class="row">
+<div class="col">
+{{home}}
+</div>
+<div class="col">
+{{#link-to "add-author" class="btn btn-primary btn-lg"}}
+    Add Author
+  {{/link-to}}
+</div>
+</div>
+<br>
+<div class="table-responsive">
+<table class="table align-middle" class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -8,23 +20,79 @@
   {{#each this.authors as |author|}}
   <tbody>
     <tr>
-      <td>{{author.name}}</td>
-      <td>{{author.description}}</td>
-      {{#each author.books as |book|}} 
-        <tbody>
-          <tr>
-            <td> {{book.title}} </td>
-          </tr>
-          </tbody>
+      <td><div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading_{{author.id}}">
+    <div class="text-center">
+    <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Click here to check the books written by the Author">
+      <button type="button" class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne_{{author.id}}" aria-expanded="false" aria-controls="collapseOne_{{author.id}}">
+        {{author.name}}
+      </button>
+    </span>
+    </div>
+    </h2>
+    <div id="collapseOne_{{author.id}}" class="accordion-collapse collapse" aria-labelledby="heading_{{author.id}}">
+      <div class="accordion-body">
+        {{#each author.books as |book|}} 
+                <tbody>
+                  <tr>
+                    <td> {{book.title}} </td>
+                  </tr>
+                  </tbody>
         {{/each}}
+      </div>
+    </div>
+  </div>
+  </div></td>
+      <td>{{author.description}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_{{author.id}}">
+              Edit Author
+        </button>
+        <div class="modal fade" id="exampleModal_{{author.id}}" tabindex="-1" aria-labelledby="exampleModalLabel_{{author.id}}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel_{{author.id}}">Edit Author Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form>
+            <div class="mb-3">
+               <label for="name_{{author.id}}" class="form-label">Name</label>
+               <Input class="form-control" @name="name" @id="name_{{author.id}}" @value={{author.name}} @change={{action "onChangeInput"}}/>
+            </div>
+            <div class="mb-3">
+               <label for="description_{{author.id}}" class="form-label">Description</label>
+               <Input class="form-control" @name="description" @id="description_{{author.id}}" @value={{author.description}} @change={{action "onChangeInput"}}/>
+            </div>
+            <button type="submit" class="btn btn-primary" {{action "onSubmitForm" author.id preventDefault=true }}>Save changes</button>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" {{action "onCloseForm" preventDefault=true }} data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </td>
+      
     </tr>
   </tbody>
   {{/each}}
 </table>
-
-<br>
-<div>
-{{#link-to "add-author" class="button"}}
-    Add Author
-  {{/link-to}}
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
