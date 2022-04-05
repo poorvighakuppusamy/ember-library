@@ -7,8 +7,10 @@
         {{#if (eq this.session.isAuthenticated true)}}
         {{log this}}
           <a class='btn btn-primary btn-lg' {{on "click" (fn this.invalidateSession this.session)}}>Logout</a>
+          {{#link-to 'refer-user' class='btn btn-primary btn-lg'}}Refer User{{/link-to}}
         {{else}}
           {{#link-to 'login' class='btn btn-primary btn-lg'}}Login{{/link-to}}
+          {{#link-to 'sign-up' class='btn btn-primary btn-lg'}}Sign Up{{/link-to}}
           <img src="/assets/images/library.jpeg" class="rounded-circle" width="604" height="436" alt="...">
         {{/if}}
       </div>

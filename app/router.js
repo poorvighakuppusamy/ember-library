@@ -17,6 +17,8 @@ Router.map(function() {
   this.route('borrow-book');
   this.route('home');
   this.route('login');
+  this.route('sign-up');
+  this.route('refer-user');
 });
 
 export default Router;

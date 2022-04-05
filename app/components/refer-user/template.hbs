@@ -1,0 +1,8 @@
+{{home}}
+<form class='col-3'>
+  <div class="form-outline mb-4">
+    <label for="email" class="form-label">Email</label>
+    <Input class="form-control" autocomplete="off" @id="email" @value={{this.email}} placeholder="Enter Email" @change={{action "onChangeInput"}} />
+  </div>
+  <button type="submit" {{action "onSubmitForm" preventDefault=true }} class="btn btn-primary btn-lg">Submit</button>
+</form>

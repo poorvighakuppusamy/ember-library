@@ -6,6 +6,7 @@ export default Component.extend({
   name:"",
   email:"",
   phone:"",
+  password:"",
 
   actions: {
     onChangeInput(event) {
@@ -15,13 +16,15 @@ export default Component.extend({
       let user = this.get('store').createRecord('user', {
               name: this.get('name'),
               email: this.get('email'),
-              phone: this.get('phone')
+              phone: this.get('phone'),
+              password: this.get('password')
       });
       user.save().then(re=> {
         console.log(re)
         this.set("name","");
         this.set("email","");
         this.set("phone","");
+        this.set("password","");
         alert("Record saved Successfully")
       })
     }
