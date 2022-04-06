@@ -66,14 +66,26 @@
       <td>{{borrower.status}}</td>
       <td>{{borrower.formatedBorrowedDate}}</td>
       <td>{{borrower.formatedReturnDate}}</td>
+      {{#if (eq this.role "Admin")}}
+      {{log this}}
       {{#if (eq borrower.status "Pending")}}
         <td><button type="submit" {{action "onReturnBook" borrower.id }} class="btn btn-primary">Return Book</button></td>
+      {{/if}}
       {{/if}}
     </tr>
   </tbody>
   {{/each}}
 </table>
 </div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  {{#if (gt this.previous 0)}}
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.previous preventDefault=false}} >{{this.previous}}</a></li>
+  {{/if}}
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.page preventDefault=false}}>{{this.page}}</a></li>
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.next preventDefault=false}}>{{this.next}}</a></li>
+  </ul>
+</nav>
 
 
 

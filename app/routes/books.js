@@ -7,6 +7,6 @@ export default Route.extend({
     this.session.requireAuthentication(transition, 'login');
   },
   model() {
-    return this.store.findAll('book')
+    return this.store.query('book',{page: 1})
   }
 });

@@ -1,9 +1,23 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: Ember.inject.service('store'),
+  session: Ember.inject.service('session'),
   title:"",
   description:"",
+  page:1,
+  previous:computed('page', function(){
+    return this.page - 1
+  }),
+  next: computed('page', function(){
+    return this.page + 1
+  }),
+  role: computed('session.data.authenticated.role', {
+    get() {
+      return this.session.data.authenticated.role
+    },
+  }),
 
   actions: {
     onChangeInput(event) {
@@ -12,8 +26,17 @@ export default Component.extend({
     onCloseForm(){
       location.reload();
     },
+    onPagination(page){
+      let that = this
+      return this.store.query('book',{page: page}).then(function(book){
+        console.log(book['content'].length)
+        if (book['content'].length > 0){
+          that.set('page',page)
+        }
+        that.set('books',book)
+      })
+    },
     onSubmitForm(value) {
-      console.log(value)
       let that = this
        let book = this.get('store').findRecord('book', value).then(function(book) {
         book.title = that.get('title');
