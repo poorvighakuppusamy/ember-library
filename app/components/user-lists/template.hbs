@@ -18,7 +18,21 @@
       <td>{{user.name}}</td>
       <td>{{user.email}}</td>
       <td>{{user.phone}}</td>
+      <td>
+        <button type="button" class="btn btn-primary" {{action "onDeleteUser" user.id preventDefault=true }}>
+              Delete
+        </button>
+    </td>
     </tr>
   </tbody>
   {{/each}}
 </table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  {{#if (gt this.previous 0)}}
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.previous preventDefault=false}} >{{this.previous}}</a></li>
+  {{/if}}
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.page preventDefault=false}}>{{this.page}}</a></li>
+    <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.next preventDefault=false}}>{{this.next}}</a></li>
+  </ul>
+</nav>

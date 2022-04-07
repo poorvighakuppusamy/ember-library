@@ -28,7 +28,7 @@
       <td>{{book.author.name}}</td>
       <td>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_{{book.id}}">
-              Edit Book
+              Edit
         </button>
         <div class="modal fade" id="exampleModal_{{book.id}}" tabindex="-1" aria-labelledby="exampleModalLabel_{{book.id}}" aria-hidden="true">
         <div class="modal-dialog">
@@ -56,6 +56,11 @@
           </div>
         </div>
       </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary" {{action "onDeleteFunction" book.id preventDefault=true }}>
+              Delete
+        </button>
       </td>
     </tr>
   </tbody>

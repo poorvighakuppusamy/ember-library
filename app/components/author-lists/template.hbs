@@ -50,7 +50,7 @@
       <td>{{author.description}}</td>
       <td>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_{{author.id}}">
-              Edit Author
+              Edit
         </button>
         <div class="modal fade" id="exampleModal_{{author.id}}" tabindex="-1" aria-labelledby="exampleModalLabel_{{author.id}}" aria-hidden="true">
         <div class="modal-dialog">
@@ -79,7 +79,11 @@
         </div>
       </div>
       </td>
-      
+      <td>
+        <button type="button" class="btn btn-primary" {{action "onDeleteFunction" author.id preventDefault=true }}>
+              Delete
+        </button>
+      </td>
     </tr>
   </tbody>
   {{/each}}

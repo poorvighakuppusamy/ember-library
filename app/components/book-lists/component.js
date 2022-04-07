@@ -26,6 +26,14 @@ export default Component.extend({
     onCloseForm(){
       location.reload();
     },
+    onDeleteFunction(value){
+      let book = this.store.findRecord('book', value).then(function(book) {
+          book.destroyRecord().then(re=>{
+            alert("Record Deleted Successfully")
+            location.reload();
+          })
+      });
+    },
     onPagination(page){
       let that = this
       return this.store.query('book',{page: page}).then(function(book){

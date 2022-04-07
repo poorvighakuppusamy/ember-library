@@ -39,6 +39,7 @@ export default Component.extend({
         alert("Book Added")
         this.set("title","");
         this.set("description","");
+        location.reload();
       }).catch((err) => {
         if(err.errors[0]["status"] == 401){
           alert("User have no permission to Add Book")
