@@ -72,6 +72,8 @@
     <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.previous preventDefault=false}} >{{this.previous}}</a></li>
   {{/if}}
     <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.page preventDefault=false}}>{{this.page}}</a></li>
+  {{#if (eq this.shownext 1)}}
     <li class="page-item"><a class="page-link" href="#" {{action "onPagination" this.next preventDefault=false}}>{{this.next}}</a></li>
+  {{/if}}
   </ul>
 </nav>

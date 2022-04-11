@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
+  shownext: 1,
   status: "",
   page:1,
   previous:computed('page', function(){
@@ -17,13 +18,19 @@ export default Component.extend({
       return this.session.data.authenticated.role
     },
   }),
+  
   actions: {
     onPagination(page){
       let that = this
       return this.store.query('borrower-detail',{page: page}).then(function(borrower){
-        console.log(borrower['content'].length)
-        if (borrower['content'].length > 0){
+        console.log(borrower['meta']['total-pages'])
+        console.log(borrower['meta']['current-page'])
+        if (borrower['meta']['total-pages'] <= borrower['meta']['current-page']){
+          that.set('shownext',0)
+        }
+        else{
           that.set('page',page)
+          that.set('shownext',1)
         }
         that.set('borrowers',borrower)
       })

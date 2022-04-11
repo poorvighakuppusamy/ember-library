@@ -5,6 +5,7 @@ export default Component.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
   title:"",
+  shownext:1,
   description:"",
   page:1,
   previous:computed('page', function(){
@@ -38,8 +39,12 @@ export default Component.extend({
       let that = this
       return this.store.query('book',{page: page}).then(function(book){
         console.log(book['content'].length)
-        if (book['content'].length > 0){
+        if (book['meta']['total-pages'] == book['meta']['current-page']){
+          that.set('shownext',0)
+        }
+        else{
           that.set('page',page)
+          that.set('shownext',1)
         }
         that.set('books',book)
       })

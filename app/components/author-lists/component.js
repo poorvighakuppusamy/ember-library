@@ -5,6 +5,7 @@ export default Component.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
   name:"",
+  shownext:1,
   description:"",
    page:1,
   previous:computed('page', function(){
@@ -37,8 +38,12 @@ export default Component.extend({
       let that = this
       return this.store.query('author',{page: page}).then(function(author){
         console.log(author['content'].length)
-        if (author['content'].length > 0){
+        if (author['meta']['total-pages'] == author['meta']['current-page']){
+          that.set('shownext',0)
+        }
+        else{
           that.set('page',page)
+          that.set('shownext',1)
         }
         that.set('authors',author)
       })
